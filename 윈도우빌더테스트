@@ -1,0 +1,145 @@
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.Canvas;
+import java.awt.Color;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.JScrollBar;
+import javax.swing.JTextPane;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JMenuBar;
+
+public class Window1 {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Window1 window = new Window1();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Window1() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setTitle("연습"); //타이틀 이름
+		frame.setBounds(100, 100, 800, 600);//사이즈 설정
+		frame.setLocationRelativeTo(null); //화면 가운데에 나오게 하기
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //창 꺼졌을때 완전 종료시키기
+		frame.setResizable(false); //화면 사이즈 변경 여부 - 불가능
+		frame.getContentPane().setLayout(null);
+		
+		JPanel endpage = new JPanel(); //마지막페이지
+		endpage.setBounds(0, 0, 800, 600);
+		frame.getContentPane().add(endpage);
+		endpage.setLayout(null);
+		
+		JButton btnBefore = new JButton("GO TO LAST"); //마지막페이지 버튼
+		btnBefore.setBounds(392, 445, 276, 93);
+		btnBefore.setFont(new Font("굴림", Font.PLAIN, 20));
+		endpage.add(btnBefore);
+		
+		JScrollBar scrollBar = new JScrollBar();
+		scrollBar.setBounds(765, 10, 23, 555);
+		endpage.add(scrollBar);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("New label");
+		lblNewLabel_1_1.setBounds(656, 70, 60, 60);
+		endpage.add(lblNewLabel_1_1);
+		
+		JLabel lblNewLabel_1_2 = new JLabel("New label");
+		lblNewLabel_1_2.setBounds(584, 140, 60, 60);
+		endpage.add(lblNewLabel_1_2);
+		
+		JLabel lblNewLabel_1_3 = new JLabel("New label");
+		lblNewLabel_1_3.setBounds(656, 140, 60, 60);
+		endpage.add(lblNewLabel_1_3);
+		
+		JLabel lblNewLabel_1_4 = new JLabel("New label");
+		lblNewLabel_1_4.setBounds(584, 210, 60, 60);
+		endpage.add(lblNewLabel_1_4);
+		
+		JLabel lblNewLabel_1_5 = new JLabel("New label");
+		lblNewLabel_1_5.setBounds(656, 210, 60, 60);
+		endpage.add(lblNewLabel_1_5);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setBounds(564, 75, 60, 60);
+		endpage.add(btnNewButton);
+		
+		JTextPane textPane = new JTextPane();
+		textPane.setBounds(74, 48, 454, 288);
+		endpage.add(textPane);
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(0, 0, 105, 23);
+		endpage.add(menuBar);
+		
+		JPanel startpage = new JPanel(); //시작페이지
+		startpage.setBounds(0, 0, 800, 600);
+		frame.getContentPane().add(startpage);
+		startpage.setLayout(null);
+		
+		JButton btnNext = new JButton("Go To Next"); //시작페이지 버튼
+		btnNext.setBounds(12, 444, 269, 88);
+		startpage.add(btnNext);
+		
+		JLabel lblNewLabel = new JLabel(""); //배경화면
+		lblNewLabel.setBackground(Color.WHITE);
+		lblNewLabel.setIcon(new ImageIcon(Window1.class.getResource("/image/\uC708\uB3C4\uC6B0\uC5B8\uB355\uBC30\uACBD.jpg")));
+		lblNewLabel.setBounds(96, 10, 559, 314);
+		startpage.add(lblNewLabel);
+		
+		btnNext.addActionListener(new ActionListener() { //시작페이지 버튼 이벤트
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				endpage.setVisible(true); //눌렀을때 마지막 페이지 보이게 하고 시작 페이지 안보이게 하기 
+				startpage.setVisible(false);
+				
+			}
+			
+		});
+		
+		endpage.setVisible(false); //마지막페이지 안보이게 하기
+		
+		btnBefore.addActionListener(new ActionListener() { //마지막 페이지 버튼 이벤트
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				startpage.setVisible(true); //눌렀을때 시작 페이지 보이게 하고 마지막 페이지 안보이게 하기 
+				endpage.setVisible(false);
+				
+			}
+			
+		});
+	}
+}
